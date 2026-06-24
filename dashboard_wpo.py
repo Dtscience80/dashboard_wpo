@@ -783,15 +783,22 @@ with tabs[6]:
                            format_func=lambda x: NUM_LABELS.get(x, x) if x in NUM_LABELS else "(sama)",
                            key="expl_size")
 
-    hover_data = [c for c in NUM_COLS[:4] if c in df_f.columns] + [paper_col]
+    hover_extra = [c for c in NUM_COLS[:4] if c in df_f.columns] + [paper_col]
 
-    plot_data = df_f[[x_axis, y_axis, color_by] + ([size_by] if size_by != "(sama)" else [])].dropna()
+    # Kumpulkan semua kolom yang dibutuhkan plot_data (hindari duplikat)
+    base_cols = [x_axis, y_axis, color_by] + ([size_by] if size_by != "(sama)" else [])
+    extra_cols = [c for c in hover_extra if c in df_f.columns and c not in base_cols]
+    all_plot_cols = list(dict.fromkeys(base_cols + extra_cols))  # deduplicate, jaga urutan
+    plot_data = df_f[all_plot_cols].dropna()
+
+    # hover_data hanya boleh referensikan kolom yang ADA di plot_data
+    hover_data = {c: True for c in hover_extra if c in plot_data.columns}
 
     if color_by in all_numeric:
         fig10 = px.scatter(
             plot_data, x=x_axis, y=y_axis, color=color_by,
             size=size_by if size_by != "(sama)" else None,
-            hover_data={c: True for c in hover_data if c in df_f.columns},
+            hover_data=hover_data,
             color_continuous_scale="viridis",
             labels={x_axis: NUM_LABELS.get(x_axis, x_axis),
                      y_axis: NUM_LABELS.get(y_axis, y_axis),
@@ -802,7 +809,7 @@ with tabs[6]:
         fig10 = px.scatter(
             plot_data, x=x_axis, y=y_axis, color=color_by,
             size=size_by if size_by != "(sama)" else None,
-            hover_data={c: True for c in hover_data if c in df_f.columns},
+            hover_data=hover_data,
             color_discrete_sequence=CARTOON_COLORS,
             labels={x_axis: NUM_LABELS.get(x_axis, x_axis),
                      y_axis: NUM_LABELS.get(y_axis, y_axis),
