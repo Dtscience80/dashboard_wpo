@@ -1,6 +1,6 @@
 """
 Dashboard Analisis Mesin Diesel — Campuran Waste Plastic Oil (WPO)
-Dataset: 23Juni_Kompilasi_Dataset_Perbaikan.xlsx (Sheet: Perbaikan)
+Dataset: 29Juni_Dataset_Gabungan.xlsx (Sheet: Perbaikan)
 EDA Komprehensif — Performa & Emisi Mesin Diesel dengan Variasi Campuran WPO
 """
 
@@ -52,7 +52,7 @@ sns.set_style("white")
 # =========================================================================
 @st.cache_data
 def load_data():
-    xls_path = "23Juni_Kompilasi_Dataset_Perbaikan.xlsx"
+    xls_path = "29Juni_Dataset_Gabungan.xlsx"
     df = pd.read_excel(xls_path, sheet_name="Perbaikan", engine="openpyxl")
     # Bersihkan kolom — hapus spasi ekstra
     df.columns = df.columns.str.strip()
