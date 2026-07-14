@@ -768,7 +768,7 @@ st.markdown("---")
 st.markdown(
     "<div style='text-align: center; color: #666; padding: 20px;'>"
     "<b>🏭 Dashboard Analisis Mesin Diesel — Campuran Plastic Pyrolysis Oil / Waste Plastic Oil (PPO/WPO)</b><br>"
-    "Dataset kompilasi dari 3 paper penelitian | Dibuat dengan Streamlit + Python"
+    "Dataset kompilasi dari 3 paper penelitian | Dibuat oleh xynsu dengan Streamlit + Python"
     "</div>",
     unsafe_allow_html=True,
 )
