@@ -54,7 +54,7 @@ sns.set_style("whitegrid")
 # LOAD DATA
 # =========================================================================
 # Nama file dataset baru (letakkan file ini di folder yang sama dengan script)
-DATA_FILE = "23_Juli_Dataset_Gabungan_Performance_Emisi_PPO_v01.xlsx"
+DATA_FILE = "23_Juli_Dataset_Gabungan_Performance_Emisi_PPO_v02.xlsx"
 
 # Mapping dari nama kolom mentah (persis seperti di file Excel) ke nama snake_case
 # yang dipakai di seluruh dashboard. Disesuaikan dengan header pada dataset baru.
